@@ -3,15 +3,12 @@ package main
 import (
 	"fmt"
 
-	_ "github.com/satori/go.uuid"
-
-	chuvi "./chuvi"
-
-	dientich "./dientich"
+	"github.com/hieudevx/golang-web/lession01/area"
+	"github.com/hieudevx/golang-web/lession01/perimeter"
 )
 
 func main() {
 	a, b := 5, 7
-	fmt.Printf("Chu vi la : %v \n", chuvi.ChuVi(a, b))
-	fmt.Printf("Dien tich la : %v \n", dientich.DienTich(a, b))
+	fmt.Printf("Perimeter is : %v \n", perimeter.Perimeter(a, b))
+	fmt.Printf("Area is : %v \n", area.Area(a, b))
 }
