@@ -14,7 +14,7 @@ type Student struct {
 }
 
 func (s *Student) calculateOverallGrade() {
-	s.OverallGrade = float64(s.EndSemGrade*2+s.MidSemGrade) / 2
+	s.OverallGrade = float64(s.EndSemGrade*2+s.MidSemGrade) / 3
 }
 
 // BubbleSort func
