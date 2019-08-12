@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Techmaster</title>
+  </head>
+  <body>
+    <!-- Kiểm tra giá trị của biến Name có bằng Golang hay ko. eq là viết tắt của equal-->
+    <!-- So sánh với một string thì string phải đặt trong ""-->
+    {{range $i, $e := .posts}}
+    <div>
+      <p>
+        Post {{ $i }}:
+        <span
+          ><a href="/bai-viet/{{.ID}}">{{.Title}}</a></span
+        >
+      </p>
+      <p>Mô tả: {{.Description}}</p>
+      <!-- <img src="" alt="Smiley face" width="42" height="42"> -->
+    </div>
+    <br />
+    <hr />
+    {{ end }}
+  </body>
+</html>
