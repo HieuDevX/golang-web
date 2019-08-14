@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 </head>
 <body>
-	<form action="/form_action" method="post">
+	<form action="/bai-viet" method="post">
 		Tiêu đề: <input type="text" name="Title" /> <br />
     Tóm tắt: <input type="text" name="Description" /> <br /> 
     Nội dung: <input type="text" name="Content" /> <br /> 
@@ -11,7 +11,12 @@
 
 		<hr />
 		<input type="submit" value="Send data" />
-
+		<hr />
+	</form>
+	<form enctype="multipart/form-data" action="/upload" method="POST">
+		<input type="file" name="uploadfile" />
+		<input type="hidden" name="token" value="{{.}}" />
+		<input type="submit" value="upload" />
 	</form>
 </body>
 </html>

@@ -1,6 +1,8 @@
 package main
 
 import (
+	"io"
+	"os"
 	"strconv"
 
 	"fmt"
@@ -53,6 +55,8 @@ var posts = []Post{
 	},
 }
 
+const maxSize = 5 << 20 // 5MB
+
 func main() {
 	app := iris.New()
 	// Đăng kí các file HTML trong thư mục view
@@ -68,7 +72,7 @@ func main() {
 			ctx.WriteString(err.Error())
 		}
 	})
-	app.Post("/form_action", func(ctx iris.Context) {
+	app.Post("/bai-viet", func(ctx iris.Context) {
 		post := Post{}
 		err := ctx.ReadForm(&post)
 		if err != nil && !iris.IsErrPath(err) /* see: https://github.com/kataras/iris/issues/1157 */ {
@@ -82,6 +86,38 @@ func main() {
 		ctx.Redirect("/bai-viet")
 	})
 	app.Get("/static/{folder}/{file}", serveFileHandler)
+
+	app.Post("/upload", iris.LimitRequestBodySize(maxSize+1<<20), func(ctx iris.Context) {
+		// Get the file from the request.
+		file, info, err := ctx.FormFile("uploadfile")
+
+		fmt.Println(info)
+
+		if err != nil {
+			ctx.StatusCode(iris.StatusInternalServerError)
+			ctx.HTML("Error while uploading: <b>" + err.Error() + "</b>")
+			return
+		}
+
+		defer file.Close()
+		fname := info.Filename
+
+		fmt.Println(fname)
+
+		// Create a file with the same name
+		// assuming that you have a folder named 'uploads'
+		out, err := os.OpenFile("/home/hieuht/go/src/github.com/hieudevx/golang-web/lesson04/uploads/"+fname,
+			os.O_WRONLY|os.O_CREATE, 0666)
+
+		if err != nil {
+			ctx.StatusCode(iris.StatusInternalServerError)
+			ctx.HTML("Error while uploading: <b>" + err.Error() + "</b>")
+			return
+		}
+		defer out.Close()
+
+		io.Copy(out, file)
+	})
 	app.Run(iris.Addr(":8080")) // defaults to that but you can change it.
 }
 
