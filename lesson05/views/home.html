@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+  <h1>Hello Friend</h1>
+  {{range $i, $e := .users}}
+  <div>
+    User {{ $i }}:
+    <p>Name: {{ .Name }}</p>
+    <p>Password: {{ .Password }}</p>
+  </div>
+  {{ end }}
+</body>
+</html>
