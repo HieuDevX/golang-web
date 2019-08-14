@@ -73,7 +73,9 @@ func RegisterHandler(ctx iris.Context) {
 	}
 	user.ID = len(users)
 	users = append(users, user)
-	ctx.Writef("User: %#v", user)
+
+	// ctx.Writef("User: %#v", user)
+	ctx.Redirect("/home")
 }
 
 func SigninHandler(ctx iris.Context) {
