@@ -30,7 +30,7 @@ var users = []User{
 	{
 		ID:       3,
 		Name:     "dendi",
-		Password: "andtoi",
+		Password: "anhtoi",
 	},
 }
 
