@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="list-product">
+    {{ range.products }}
+    <div class="item">
+      <a href="/san-pham/{{.ID}}">
+        <div class="card product">
+          <img
+            class="card-img-top product-thumbnail"
+            src="{{.Image}}"
+            alt="{{.Name}}"
+          />
+          <div class="card-body">
+            <div class="product-rating" data-score="{{.Score}}"></div>
+            <div class="product-name">
+              {{.Name}}
+            </div>
+            <div class="product-price">
+              <div class="new-price">
+                <span class="money">{{.NewPrice}}</span> VND
+              </div>
+              {{ if gt .OldPrice 0 }}
+              <div class="old-price">
+                <span class="money">{{.OldPrice}}}</span> VND
+              </div>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    {{ end }}
+  </div>
+</div>

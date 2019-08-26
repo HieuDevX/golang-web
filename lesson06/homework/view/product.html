@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <div class="product-detail-thumbnail">
+        <img src="{{.Image}}" alt="{{.Name}}" class="img-fluid" />
+      </div>
+    </div>
+    <div class="col-md-8 col-sm-6 col-xs-12">
+      <div class="product-detail">
+        <div class="product-detail-name">
+          {{.Name}}
+        </div>
+        <div class="product-rating text-left" data-score="{{.Score}}"></div>
+        <div>
+          <span class="new-price">
+            <span class="money">{{.NewPrice}}</span> VND
+          </span>
+          &ensp;
+          {{ if gt .OldPrice 0 }}
+          <span class="old-price">
+            <span class="money">{{.OldPrice}}</span> VND
+          </span>
+          {{ end }}
+        </div>
+        <hr />
+        <div class="description">
+          {{.Description}}
+        </div>
+        <hr />
+        <div class="review-div">
+          <div class="">
+            Bình luận
+          </div>
+          <div class="list-review">
+            {{ range.Reviews }}
+            <div class="review">
+              <div class="reviewer">{{.Reviewer}}</div>
+              <div class="review-content">{{.ReviewContent}}</div>
+            </div>
+            {{ end }}
+            <!-- <div class="review">
+              <div class="reviewer">Nguyễn Thị C</div>
+              <div class="review-content">
+                Kem ngon ơi là ngon ý. Kem ngon nhất tôi từng ăn.
+              </div>
+            </div>
+            <div class="review">
+              <div class="reviewer">Phan Văn D</div>
+              <div class="review-content">Không có gì để nói</div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
